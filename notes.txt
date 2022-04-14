@@ -1,0 +1,13 @@
+[Data Send]
+self.set_value() > use this because its use js so it is fast
+
+[Waits]
+for loading image
+    self.wait_for_element_visible(self.loading_overlay)
+    self.wait_for_element_not_visible(self.loading_overlay)
+OR
+    self.wait_for_text("$300.00", self.subtotal_text)
+
+[Exceptions]
+try all type of exceptions in try and except block using:
+    from selenium.common.exceptions import NoSuchElementException[0]

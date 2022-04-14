@@ -7,8 +7,8 @@ class ContactTest(BaseCase):
         self.open("https://practice.automationbro.com/contact")
 
         # scroll to the empty form and take screenshot
-        #self.scroll_to("#evf-form-277")
-        #self.save_screenshot("empty_contact_form", "custom_screenshots")
+        self.scroll_to("#evf-form-277")
+        self.save_screenshot("empty_contact_form", "custom_screenshots")
 
         # fill in all the fields
         self.send_keys('.contact-name input', 'Test Name')
@@ -17,7 +17,8 @@ class ContactTest(BaseCase):
         self.send_keys('.contact-message textarea', 'This is a test message')
 
         # take screenshot when the form is filled
-        #self.save_screenshot("filled_contact_form", "custom_screenshots")
+        self.scroll_to("#evf-form-277")
+        self.save_screenshot("filled_contact_form", "custom_screenshots")
 
         # click the submit button
         self.click("#evf-submit-277")

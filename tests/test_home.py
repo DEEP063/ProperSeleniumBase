@@ -1,20 +1,15 @@
-from seleniumbase import BaseCase
-import time
+from page_objects.home_page import HomePage
 
-class HomeTest(BaseCase):
+class HomeTest(HomePage):
     def setUp(self):
         super().setUp()
         print("Set Up called before test")
 
         #login
-        self.open("https://practice.automationbro.com/my-account")
-        self.add_text("#username","galgadot")
-        self.add_text("#password","galgadot123")
-        self.click("button[name=login]")
-        self.assert_text("Log out", ".woocommerce-MyAccount-content")
+        HomePage.login(self)
 
         #open home page
-        self.open("https://practice.automationbro.com/")
+        HomePage.open_page(self)
 
     def tearDown(self):
         self.open("https://practice.automationbro.com/my-account")
@@ -29,27 +24,27 @@ class HomeTest(BaseCase):
         self.assert_title("Practice E-Commerce Site – Automation Bro")
 
         #logo present
-        self.assert_element(".custom-logo-link")
+        self.assert_element(HomePage.logo_icon)
 
         #click on get started button and assert url
-        self.click("#get-started")
+        self.click(HomePage.get_started_btn)
         current_url = self.get_current_url()
         #self.assert_equal("https://practice.automationbro.com/#get-started",current_url,"uRRL is not correct ")
         self.assert_true("#get-started" in current_url)
 
         #get header text and assert the value
-        self.assert_text("Think different. Make different.","h1")
+        self.assert_text("Think different. Make different.",HomePage.heading_text)
 
         #scroll to bottom and assert footer text
         self.scroll_to_bottom()
-        self.assert_text("Copyright © 2020 Automation Bro",".tg-site-footer-section-1")
+        self.assert_text("Copyright © 2020 Automation Bro",HomePage.copyright_text)
 
 
     def test_menu_links(self):
         expected_menu_links_texts = ["Home","About", "Shop", "Blog", "Contact", "My account"]
 
         #find menu elements
-        actual_menu_links_elements = self.find_elements("//ul[@id='primary-menu']/*[starts-with(@id,'menu-item')]")
+        actual_menu_links_elements = self.find_elements(HomePage.menu_links)
 
         #loop through menu links elements
         for idx,ele_text in enumerate(actual_menu_links_elements):
