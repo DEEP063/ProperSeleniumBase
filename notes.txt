@@ -11,3 +11,21 @@ OR
 [Exceptions]
 try all type of exceptions in try and except block using:
     from selenium.common.exceptions import NoSuchElementException[0]
+
+[Browser]
+--browser=firefox
+
+[Headless]
+--headless
+
+[Demo mode]
+--demo
+
+[run parallel]
+-n=6
+
+[html report]
+--html=report.html
+
+[Dashboard]
+--dashboard
